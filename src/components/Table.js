@@ -1,6 +1,8 @@
 import React from "react";
 import reqwest from "reqwest";
 import { Table, Tag } from "antd";
+import { Link } from "react-router-dom";
+
 
 const associateColors = [
   { type: "TV", color: "geekblue" },
@@ -14,7 +16,8 @@ const columns = [
   {
     title: "Title",
     dataIndex: "title",
-    width: "20%"
+    width: "20%",
+    render: title => <Link to={{pathname: `/${title}`}}>{title}</Link>
   },
   {
     title: "Type",
@@ -61,6 +64,8 @@ const columns = [
   }
 ];
 
+
+
 class TableFetch extends React.Component {
   state = {
     data: [],
@@ -92,7 +97,7 @@ class TableFetch extends React.Component {
     this.setState({ loading: true });
     reqwest({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.jikan.moe/v3/search/anime?q=Pokemon",
+        "https://cors-anywhere.herokuapp.com/http://api.jikan.moe/v3/search/anime?q=naruto",
       method: "get",
       data: {
         ...params
