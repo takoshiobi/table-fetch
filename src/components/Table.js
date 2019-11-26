@@ -3,7 +3,6 @@ import reqwest from "reqwest";
 import { Table, Tag } from "antd";
 import { Link } from "react-router-dom";
 
-
 const associateColors = [
   { type: "TV", color: "geekblue" },
   { type: "Movie", color: "volcano" },
@@ -11,7 +10,6 @@ const associateColors = [
   { type: "ONA", color: "purple" },
   { type: "OVA", color: "cyan" }
 ];
-
 
 class TableFetch extends React.Component {
   state = {
@@ -67,12 +65,19 @@ class TableFetch extends React.Component {
         title: "Title",
         dataIndex: "title",
         width: "20%",
-        render: title => <Link to={{
-          pathname: `/${title}`,
-          state: {
-            img: this.image_url
-          }
-      }}>{title}</Link>
+        render: title => (
+          <Link
+            to={{
+              pathname: `/${title}`,
+              state: {
+                data: this.state.data,
+                title
+              }
+            }}
+          >
+            {title}
+          </Link>
+        )
       },
       {
         title: "Type",
@@ -100,26 +105,30 @@ class TableFetch extends React.Component {
       },
       {
         title: "Rating",
-        sorter: (a, b) => a.score - b.score,
         dataIndex: "score",
         defaultSortOrder: "descend",
-        sortDirections: ['ascend' | 'descend'],
         render: score => (
           <span>
             {score >= 7 && (
-              <span style={{ color: "#0ee67b", fontWeight: "bold" }}>{score}</span>
+              <span style={{ color: "#0ee67b", fontWeight: "bold" }}>
+                {score}
+              </span>
             )}
             {score > 6 && score < 7 && (
-              <span style={{ color: "#ebc500", fontWeight: "bold" }}>{score}</span>
+              <span style={{ color: "#ebc500", fontWeight: "bold" }}>
+                {score}
+              </span>
             )}
             {score <= 6 && (
-              <span style={{ color: "#ff0015", fontWeight: "bold" }}>{score}</span>
+              <span style={{ color: "#ff0015", fontWeight: "bold" }}>
+                {score}
+              </span>
             )}
           </span>
         )
       }
     ];
-    
+
     return (
       <div className="Table__container">
         <Table

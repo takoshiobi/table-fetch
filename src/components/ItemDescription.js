@@ -1,22 +1,71 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Tag } from "antd";
 
-class ItemDescription extends React.Component {
-  render() {
-    return (
-        <div className="container">
-            <h1>Title of the Pokemon movie</h1>
-            <div className="col-12 col-md-6 col-xl-6 col-sm-12">
+const associateColors = [
+  { type: "TV", color: "geekblue" },
+  { type: "Movie", color: "volcano" },
+  { type: "Special", color: "magenta" },
+  { type: "ONA", color: "purple" },
+  { type: "OVA", color: "cyan" }
+];
+
+function ItemDescription(props) {
+  return (
+    <div className="container ItemDescription__container">
+      <h1>{props.location.state.title}</h1>
+      {props.location.state.data.map(item => {
+        if (item.title === props.location.state.title) {
+          return (
+            <div className="row">
+              <div className="col-12 col-md-6 col-xl-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
+                <img src={item.image_url} alt="poke_img" />
+              </div>
+              <div className="col-12 col-md-6 col-xl-6 col-sm-12">
+                <p>{item.synopsis}</p>
+                <div className="Description__score">
+                  {item.score >= 7 && (
+                    <span style={{ color: "#0ee67b", fontWeight: "bold" }}>
+                      {item.score}
+                    </span>
+                  )}
+                  {item.score > 6 && item.score < 7 && (
+                    <span style={{ color: "#ebc500", fontWeight: "bold" }}>
+                      {item.score}
+                    </span>
+                  )}
+                  {item.score <= 6 && (
+                    <span style={{ color: "#ff0015", fontWeight: "bold" }}>
+                      {item.score}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  {associateColors.map((el, i) =>
+                    el.type === item.type ? (
+                      <Tag
+                        key={i + el}
+                        color={el.color}
+                        className="Description__tag"
+                      >
+                        {item.type}
+                      </Tag>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="col-12 col-md-6 col-xl-6 col-sm-12">
-            <div>Synopsis djfskhfhsjdfkhsjdkfhsdkjfhkjf hsdkjfhsdfhjksdfh shdfjkhsdjf</div>
-            <div>1.3</div>
-            <div>Movie</div>
-            </div>
-            <Link to="/">Back</Link>
-        </div>
-    )
-  }
+          );
+        }
+      })}
+
+      <Link className="Back__button" to="/">
+        Back
+      </Link>
+    </div>
+  );
 }
 
 export default ItemDescription;

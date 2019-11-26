@@ -37,3 +37,42 @@
     width: 90%;
   }
 }
+
+/* == ITEM DESCRIPTION == */
+
+.ItemDescription__container h1 {
+  text-align: center;
+  margin: 32px auto;
+}
+
+.ItemDescription__container img {
+  margin-bottom: 24px;
+  box-shadow: 0 1px 12px rgb(94, 93, 93);
+}
+
+.ItemDescription__container p {
+  margin: 0 4%;
+}
+
+.Description__tag,
+.Description__score {
+  margin: 0 4%;
+}
+
+.Back__button {
+  padding: 3px 12px;
+  font-weight: bold;
+  background-color: #096dd9;
+  display: table;
+  margin: 24px auto;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid #0050b3;
+}
+
+.Back__button:hover {
+  background-color: #003a8c;
+  transition: 0.5s;
+  color: white;
+  text-decoration: none;
+}
