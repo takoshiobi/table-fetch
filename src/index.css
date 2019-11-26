@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* == MAIN COLORS == */
+
+  --main-color: #ffbf00;
 }
 
 code {
