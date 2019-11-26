@@ -12,59 +12,6 @@ const associateColors = [
   { type: "OVA", color: "cyan" }
 ];
 
-const columns = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    width: "20%",
-    render: title => <Link to={{pathname: `/${title}`}}>{title}</Link>
-  },
-  {
-    title: "Type",
-    dataIndex: "type",
-    width: "20%",
-    render: type => (
-      <span>
-        {associateColors.map((item, i) => {
-          let tag =
-            type === item.type ? (
-              <Tag key={i} color={item.color}>
-                {item.type}
-              </Tag>
-            ) : (
-              ""
-            );
-          return tag;
-        })}
-      </span>
-    )
-  },
-  {
-    title: "N° Episodes",
-    dataIndex: "episodes"
-  },
-  {
-    title: "Rating",
-    sorter: (a, b) => a.score - b.score,
-    dataIndex: "score",
-    defaultSortOrder: "descend",
-    render: score => (
-      <span>
-        {score >= 7 && (
-          <span style={{ color: "#0ee67b", fontWeight: "bold" }}>{score}</span>
-        )}
-        {score > 6 && score < 7 && (
-          <span style={{ color: "#ebc500", fontWeight: "bold" }}>{score}</span>
-        )}
-        {score <= 6 && (
-          <span style={{ color: "#ff0015", fontWeight: "bold" }}>{score}</span>
-        )}
-      </span>
-    )
-  }
-];
-
-
 
 class TableFetch extends React.Component {
   state = {
@@ -97,7 +44,7 @@ class TableFetch extends React.Component {
     this.setState({ loading: true });
     reqwest({
       url:
-        "https://cors-anywhere.herokuapp.com/http://api.jikan.moe/v3/search/anime?q=naruto",
+        "https://cors-anywhere.herokuapp.com/http://api.jikan.moe/v3/search/anime?q=pokemon",
       method: "get",
       data: {
         ...params
@@ -115,6 +62,64 @@ class TableFetch extends React.Component {
   };
 
   render() {
+    const columns = [
+      {
+        title: "Title",
+        dataIndex: "title",
+        width: "20%",
+        render: title => <Link to={{
+          pathname: `/${title}`,
+          state: {
+            img: this.image_url
+          }
+      }}>{title}</Link>
+      },
+      {
+        title: "Type",
+        dataIndex: "type",
+        width: "20%",
+        render: type => (
+          <span>
+            {associateColors.map((item, i) => {
+              let tag =
+                type === item.type ? (
+                  <Tag key={i} color={item.color}>
+                    {item.type}
+                  </Tag>
+                ) : (
+                  ""
+                );
+              return tag;
+            })}
+          </span>
+        )
+      },
+      {
+        title: "N° Episodes",
+        dataIndex: "episodes"
+      },
+      {
+        title: "Rating",
+        sorter: (a, b) => a.score - b.score,
+        dataIndex: "score",
+        defaultSortOrder: "descend",
+        sortDirections: ['ascend' | 'descend'],
+        render: score => (
+          <span>
+            {score >= 7 && (
+              <span style={{ color: "#0ee67b", fontWeight: "bold" }}>{score}</span>
+            )}
+            {score > 6 && score < 7 && (
+              <span style={{ color: "#ebc500", fontWeight: "bold" }}>{score}</span>
+            )}
+            {score <= 6 && (
+              <span style={{ color: "#ff0015", fontWeight: "bold" }}>{score}</span>
+            )}
+          </span>
+        )
+      }
+    ];
+    
     return (
       <div className="Table__container">
         <Table
