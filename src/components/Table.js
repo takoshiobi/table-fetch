@@ -2,14 +2,7 @@ import React from "react";
 import reqwest from "reqwest";
 import { Table, Tag } from "antd";
 import { Link } from "react-router-dom";
-
-const associateColors = [
-  { type: "TV", color: "geekblue" },
-  { type: "Movie", color: "volcano" },
-  { type: "Special", color: "magenta" },
-  { type: "ONA", color: "purple" },
-  { type: "OVA", color: "cyan" }
-];
+import associateColors from "../data/associateColors";
 
 class TableFetch extends React.Component {
   state = {
@@ -94,6 +87,13 @@ class TableFetch extends React.Component {
                 ) : (
                   ""
                 );
+              if (item.type === "") {
+                tag = (
+                  <Tag key={i} color={"gray"}>
+                    Not specified
+                  </Tag>
+                );
+              }
               return tag;
             })}
           </span>

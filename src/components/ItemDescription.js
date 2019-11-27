@@ -1,14 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Tag } from "antd";
-
-const associateColors = [
-  { type: "TV", color: "geekblue" },
-  { type: "Movie", color: "volcano" },
-  { type: "Special", color: "magenta" },
-  { type: "ONA", color: "purple" },
-  { type: "OVA", color: "cyan" }
-];
+import associateColors from "../data/associateColors";
 
 function ItemDescription(props) {
   return (
@@ -23,23 +16,7 @@ function ItemDescription(props) {
               </div>
               <div className="col-12 col-md-6 col-xl-6 col-sm-12">
                 <p>{item.synopsis}</p>
-                <div className="Description__score">
-                  {item.score >= 7 && (
-                    <span style={{ color: "#0ee67b", fontWeight: "bold" }}>
-                      {item.score}
-                    </span>
-                  )}
-                  {item.score > 6 && item.score < 7 && (
-                    <span style={{ color: "#ebc500", fontWeight: "bold" }}>
-                      {item.score}
-                    </span>
-                  )}
-                  {item.score <= 6 && (
-                    <span style={{ color: "#ff0015", fontWeight: "bold" }}>
-                      {item.score}
-                    </span>
-                  )}
-                </div>
+                <div className="Description__score">{item.score}</div>
                 <div>
                   {associateColors.map((el, i) =>
                     el.type === item.type ? (
@@ -59,6 +36,7 @@ function ItemDescription(props) {
             </div>
           );
         }
+        return <div>No data</div>;
       })}
 
       <Link className="Back__button" to="/">
