@@ -15,6 +15,17 @@
   margin: 54px auto;
 }
 
+@media (max-width: 900px) {
+  .Table__container {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .Header__container {
+    width: 90%;
+  }
+}
+
 /* == HEADER == */
 
 .Header__container h1 span {
@@ -25,17 +36,6 @@
 
 .ant-pagination {
   margin-right: 18px !important;
-}
-
-@media (max-width: 900px) {
-  .Table__container {
-    width: 100%;
-    box-shadow: none;
-  }
-
-  .Header__container {
-    width: 90%;
-  }
 }
 
 /* == ITEM DESCRIPTION == */
