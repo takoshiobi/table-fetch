@@ -8,8 +8,9 @@ function ItemDescription(props) {
     <div className="container ItemDescription__container">
       <h1>{props.location.state.title}</h1>
       {props.location.state.data.map(item => {
+        let element;
         if (item.title === props.location.state.title) {
-          return (
+          element = (
             <div className="row">
               <div className="col-12 col-md-6 col-xl-6 col-sm-12 d-flex justify-content-md-end justify-content-center">
                 <img src={item.image_url} alt="poke_img" />
@@ -36,7 +37,8 @@ function ItemDescription(props) {
             </div>
           );
         }
-        return <div>No data</div>;
+        return element;
+        
       })}
 
       <Link className="Back__button" to="/">
