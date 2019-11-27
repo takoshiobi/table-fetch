@@ -18,6 +18,10 @@ You can access a showcase of this app right here: https://elastic-dijkstra-10159
 
 #### Maintainability
 
+According to code climate this code has regular (not as bad as I expected) maintainability:
+
+![maint](./img/main.png)
+
 #### Possible improvements
 
 - Add possibility to sort results by rating.
@@ -25,3 +29,6 @@ You can access a showcase of this app right here: https://elastic-dijkstra-10159
 - Redesign description page.
 - Cover app with e2e/unit tests.
 - Description page is no longer accessible after refresh. It's possible to use Redux instead of passing props directly to router link in order to fix this issue.
+* Process edge cases such as empty title/too long titles, no data about number of episodes, etc.
+
+![home](./img/home.png)
