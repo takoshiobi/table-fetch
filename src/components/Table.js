@@ -7,7 +7,7 @@ import associateColors from "../data/associateColors";
 class TableFetch extends React.Component {
   state = {
     data: [],
-    pagination: { defaultPageSize: 5 },
+    pagination: { defaultPageSize: 8 },
     loading: false
   };
 
